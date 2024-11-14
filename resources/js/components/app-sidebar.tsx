@@ -24,14 +24,13 @@ import { NavMain } from "./nav-main";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const { auth } = usePage().props as PageProps;
-    
+
     const isRouteActive = (routeName: string | string[]) => {
         const currentRoute = route().current();
         return Array.isArray(routeName)
-            ? routeName.some(name => currentRoute?.startsWith(name))
+            ? routeName.some((name) => currentRoute?.startsWith(name))
             : currentRoute?.startsWith(routeName);
-    }
-
+    };
 
     const data = {
         navMain: [
@@ -59,8 +58,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             <AppWindowIcon className="size-6 text-sidebar-primary-background" />
                         </Link>
                         <div className="grid flex-1 text-left text-sm leading-tight">
-                            <span className="truncate font-semibold">UMS</span>
-                            <span className="truncate text-xs">v1.0.0</span>
+                            <span className="truncate font-semibold">
+                                shadcn laravel
+                            </span>
                         </div>
                     </SidebarMenuButton>
                 </SidebarMenuItem>

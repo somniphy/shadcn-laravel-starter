@@ -22,7 +22,7 @@ export default function Authenticated({
 }: PropsWithChildren<{
     header: { title: string; parent?: { title: string; href: string } };
 }>) {
-    const user = usePage().props.auth.user;
+
 
     return (
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">

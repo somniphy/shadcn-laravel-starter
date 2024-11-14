@@ -2,9 +2,7 @@ import { DataTable } from "@/components/data-table";
 import { tableColumns } from "./table-columns";
 import AuthenticatedLayout from "@/layouts/authenticated-layout";
 import { Head } from "@inertiajs/react";
-import { PageProps, User } from "@/types";
-
-
+import { PageProps, User } from "@/types"; 
 export default function UserList({ users }: PageProps<{ users: User[] }>) {
     return (
         <AuthenticatedLayout header={{ title: "Users" }}>

@@ -2,14 +2,13 @@
 import AuthenticatedLayout from "@/layouts/authenticated-layout";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-
 import { User } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
 
 export default function UserView({ user }: { user: User }) {
     return (
-        <AuthenticatedLayout header={{ title: "Edit User" }}>
+        <AuthenticatedLayout header={{ title: "User Information" }}>
             <div className="space-y-6">
                 <Card>
                     <CardHeader className="border-b">

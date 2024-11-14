@@ -37,11 +37,12 @@ export const tableColumns: ColumnDef<User>[] = [
         accessorKey: "actions",
         header: "Actions",
         cell: ({ row }) => {
+            const userId = row.original.id;
             return (
                 <Link href={route("users.view", row.original.id)}>
                     <Button variant="default" size="sm">
                         <ViewIcon />
-                        View
+                        View    
                     </Button>
                 </Link>
             );

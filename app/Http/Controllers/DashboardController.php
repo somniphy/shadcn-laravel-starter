@@ -19,7 +19,7 @@ class DashboardController extends Controller
             ->orderBy('month')
             ->get()
             ->map(function ($item) {
-                // Convert month number to short month name
+              
                 $monthName = Carbon::createFromFormat('m', $item->month)->format('M');
                 return [
                     'month' => $monthName,

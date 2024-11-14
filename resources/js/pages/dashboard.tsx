@@ -79,7 +79,6 @@ export default function Dashboard(props: DashboardProps) {
                 title: "Dashboard",
             }}
         >
-            <Head title="Dashboard" />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -121,7 +120,7 @@ export default function Dashboard(props: DashboardProps) {
                                 className="space-y-4"
                             >
                                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                                    {/* Existing users card */}
+                        
                                     <Card className="col-span-2">
                                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                             <CardTitle className="text-sm font-medium">

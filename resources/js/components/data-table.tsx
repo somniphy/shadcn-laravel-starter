@@ -20,9 +20,8 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { Link } from "@inertiajs/react";
-import { Button } from "./ui/button";
-import { PlusIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];

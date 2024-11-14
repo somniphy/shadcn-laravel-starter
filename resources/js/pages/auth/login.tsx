@@ -69,6 +69,7 @@ export default function Login({
                                     onChange={(e) =>
                                         setData("email", e.target.value)
                                     }
+                                    autoComplete="email"
                                     required
                                 />
                                 <InputError
@@ -89,6 +90,7 @@ export default function Login({
                                         setData("password", e.target.value)
                                     }
                                     required
+                                    autoComplete="current-password"
                                 />
 
                                 <InputError
@@ -105,25 +107,26 @@ export default function Login({
                                 )}
                             </div>
 
-                            <div className="mt-4 block">
-                                <label className="flex items-center">
-                                    <Checkbox
-                                        id="remember"
-                                        name="remember"
-                                        checked={data.remember}
-                                        onCheckedChange={(checked: boolean) =>
-                                            setData("remember", checked)
-                                        }
-                                    />
-                                    <span className="ms-2 text-sm text-gray-600">
-                                        Remember me
-                                    </span>
+                            <div className="mt-4 flex items-center space-x-2">
+                                <Checkbox
+                                    id="remember"
+                                    name="remember"
+                                    checked={data.remember}
+                                    onCheckedChange={(checked: boolean) =>
+                                        setData("remember", checked)
+                                    }
+                                />
+                                <label
+                                    htmlFor="remember"
+                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                    Remember me
                                 </label>
                             </div>
 
                             <div className="items-center">
                                 <Button
-                                    className="w-full"
+                                    type="submit"
                                     variant="default"
                                     disabled={processing}
                                 >
