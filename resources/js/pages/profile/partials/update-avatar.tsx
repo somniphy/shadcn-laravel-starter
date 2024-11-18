@@ -60,7 +60,9 @@ export default function UpdateAvatar({ auth, message }: UpdateAvatarProps) {
                                 alt="Avatar"
                             />
                         ) : (
-                            <AvatarFallback>No Avatar</AvatarFallback>
+                            <AvatarFallback>
+                                {auth.user.name.charAt(0)}
+                            </AvatarFallback>
                         )}
                  </Avatar>
                     <form onSubmit={submit} encType="multipart/form-data">
