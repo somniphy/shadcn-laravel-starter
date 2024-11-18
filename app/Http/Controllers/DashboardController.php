@@ -8,11 +8,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+
+
         $monthlyUsers = User::select(DB::raw("strftime('%m', created_at) as month"), DB::raw('count(*) as count'))
             ->where('created_at', '>=', Carbon::now()->subMonths(6))
             ->groupBy('month')

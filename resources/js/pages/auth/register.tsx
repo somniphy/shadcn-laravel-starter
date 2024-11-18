@@ -21,6 +21,7 @@ export default function Register({ auth }: PageProps) {
         email: "",
         password: "",
         password_confirmation: "",
+        avatar: "",
     });
 
     const submit: FormEventHandler = (e) => {

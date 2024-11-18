@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateAvatarRequest;
 
 class ProfileController extends Controller
 {
@@ -23,6 +23,7 @@ class ProfileController extends Controller
         return Inertia::render('profile/edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
+            'avatar' => $request->user()->avatar,
         ]);
     }
 
@@ -38,7 +39,32 @@ class ProfileController extends Controller
         }
         
         $request->user()->save();
+        return Redirect::route('profile.edit');
+    }
+    
+    //you can also use UpdateAvatarRequest to validate the request
+    public function store(Request $request)
+    {
+        $request->validate([
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+        ]);
 
+        if ($request->hasFile('avatar')) {
+            // delete old avatar if it exists
+            if ($request->user()->avatar) {
+                $oldAvatarPath = public_path('avatars/' . $request->user()->avatar);
+                if (file_exists($oldAvatarPath)) {
+                    unlink($oldAvatarPath);
+                }
+            }
+
+            // save new avatar
+            $file = time() . '.' . $request->avatar->getClientOriginalName();
+            $request->avatar->move(public_path('avatars'), $file);
+            $validated['avatar'] = $file;
+        }
+
+        $request->user()->update($validated);
         return Redirect::route('profile.edit');
     }
 

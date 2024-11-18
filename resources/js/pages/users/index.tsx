@@ -14,6 +14,10 @@ export default function UserList({ users }: PageProps<{ users: User[] }>) {
                         column="name"
                         columns={tableColumns}
                         data={users}
+                        //button text
+                        buttonText="user"
+                        //route name
+                        routeName="users"
                     />
                 </div>
             </div>

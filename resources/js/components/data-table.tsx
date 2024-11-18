@@ -20,14 +20,17 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-
+import { Link } from "@inertiajs/react";
 import { Button } from "@/components/ui/button";
+import { PlusIcon } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     placeholder: string;
     column: string;
+    buttonText: string;
+    routeName: string;
 }
 
 export function DataTable<TData, TValue>({
@@ -35,10 +38,13 @@ export function DataTable<TData, TValue>({
     data,
     placeholder,
     column,
+    // buttonText,
+    // routeName,
 }: DataTableProps<TData, TValue>) {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
     const table = useReactTable({
+
         data,
         columns,
         onColumnFiltersChange: setColumnFilters,
@@ -66,6 +72,12 @@ export function DataTable<TData, TValue>({
                     }
                     className="max-w-sm"
                 ></Input>
+                {/* <Link href={route(`${routeName}.create`)}>
+                    <Button variant="default" size="sm">
+                        <PlusIcon className="w-4 h-4" />
+                        Add {buttonText}
+                    </Button>
+                </Link> */}
             </div>
 
             <div className="rounded-md border">

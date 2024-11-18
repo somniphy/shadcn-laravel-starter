@@ -20,9 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('auth/register', [
-            
-        ]);
+        return Inertia::render('auth/register');
     }
 
     /**
@@ -44,9 +42,10 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
 
+        event(new Registered($user));
         Auth::login($user);
+
 
         return redirect(route('dashboard', absolute: false));
     }

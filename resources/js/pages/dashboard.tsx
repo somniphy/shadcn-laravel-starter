@@ -1,6 +1,5 @@
 "use client";
 import AuthenticatedLayout from "@/layouts/authenticated-layout";
-import { Head } from "@inertiajs/react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     Card,
@@ -67,7 +66,7 @@ const getLastSixMonths = (monthlyData: Array<{ month: string; count: number }>):
 const chartConfig = {
     users: {
         label: "Users",
-        color: "hsl(var(--chart-1))",
+        color: "hsl(var(--primary))",
     },
 } satisfies ChartConfig;
 

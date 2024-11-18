@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { User } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
+import { ArrowLeftIcon } from "lucide-react";
 
 export default function UserView({ user }: { user: User }) {
     return (
@@ -19,7 +20,10 @@ export default function UserView({ user }: { user: User }) {
                                 </h2>
                             </div>
                             <Button variant="default" asChild>
-                                <Link href={route("users.index")}>Back</Link>
+                                <Link href={route("users.index")}>
+                                    <ArrowLeftIcon className="w-4 h-4 mr-2" />
+                                    Back
+                                </Link>
                             </Button>
                         </div>
                     </CardHeader>

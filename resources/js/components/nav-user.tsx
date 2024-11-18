@@ -19,9 +19,17 @@ import {
     useSidebar,
 } from "@/components/ui/sidebar";
 import { User } from "@/types";
+import { usePage } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 export function NavUser({ user }: { user: User }) {
     const { isMobile } = useSidebar();
+    const { auth } = usePage().props;
+
+    // function to get the full avatar URL
+    const getAvatarUrl = (avatarPath: string | null) => {
+        if (!avatarPath) return null;
+        return `/avatars/${avatarPath.replace(/^\//, '')}`;
+    };
 
     return (
         <SidebarMenu>
@@ -33,10 +41,13 @@ export function NavUser({ user }: { user: User }) {
                             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >
                             <Avatar className="h-8 w-8 rounded-lg">
-                                {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
-                                <AvatarFallback className="rounded-lg">
-                                    {user.name.charAt(0)}
-                                </AvatarFallback>
+                                {auth.user.avatar ? (   
+                                    <AvatarImage src={getAvatarUrl(auth.user.avatar) || undefined} alt={auth.user.name} />
+                                ) : (
+                                    <AvatarFallback className="rounded-lg">
+                                        {auth.user.name.charAt(0)}
+                                    </AvatarFallback>
+                                )}
                             </Avatar>
                             <div className="grid flex-1 text-left text-sm leading-tight">
                                 <span className="truncate font-semibold">
@@ -62,14 +73,17 @@ export function NavUser({ user }: { user: User }) {
                             >
                                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                     <Avatar className="h-8 w-8 rounded-lg">
-                                        {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
-                                        <AvatarFallback className="rounded-lg">
-                                            {user.name.charAt(0)}
-                                        </AvatarFallback>
+                                        {auth.user.avatar ? (
+                                            <AvatarImage src={getAvatarUrl(auth.user.avatar) || undefined} alt={auth.user.name} />
+                                        ) : (
+                                            <AvatarFallback className="rounded-lg">
+                                                {auth.user.name.charAt(0)}
+                                            </AvatarFallback>
+                                        )}
                                     </Avatar>
                                     <div className="grid flex-1 text-left text-sm leading-tight">
                                         <span className="truncate font-semibold">
-                                            {user.name}
+                                            {auth.user.name}
                                         </span>
                                         <span className="truncate text-xs">
                                             {user.email}

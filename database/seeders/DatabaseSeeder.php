@@ -13,24 +13,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create admin/test user
+        // Create test user
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'test@user.com',
             'password' => 'password',
             'email_verified_at' => now(),
             'updated_at' => now(),
             'created_at' => now(),
-        ]);
+    ]);
 
-        User::factory(10)->create([
-            'created_at' => fake()->dateTimeBetween('-3 months', 'now'),
-            'updated_at' => fake()->dateTimeBetween('-2 months', 'now'),
-        ]);
+        $userGroups = [
+            ['count' => 10, 'from' => '-3 months', 'to' => 'now'],
+            ['count' => 4,  'from' => '-2 months', 'to' => 'now'],
+            ['count' => 6, 'from' => '-6 months', 'to' => 'now'],
+            ['count' => 2, 'from' => '-4 months', 'to' => 'now'],
+        ];
 
-        User::factory(10)->create([
-            'created_at' => fake()->dateTimeBetween('-6 months', '-4 months'),
-            'updated_at' => fake()->dateTimeBetween('-4 months', '-2 months'),
-        ]);
+        // create users for each group
+        foreach ($userGroups as $group) {
+            User::factory($group['count'])->create([
+                'created_at' => fake()->dateTimeBetween($group['from'], $group['to']),
+            ]);
+        }
     }
 }

@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { User } from "@/types";
 import { Button } from "@/components/ui/button";
-import { ViewIcon } from "lucide-react";
+import { EyeIcon } from "lucide-react";
 import { Link } from "@inertiajs/react";
 
 
@@ -35,14 +35,14 @@ export const tableColumns: ColumnDef<User>[] = [
     },
     {
         accessorKey: "actions",
-        header: "Actions",
+        header: "Show",
         cell: ({ row }) => {
             const userId = row.original.id;
             return (
-                <Link href={route("users.view", row.original.id)}>
+                <Link href={route("users.show", row.original.id)}>
                     <Button variant="default" size="sm">
-                        <ViewIcon />
-                        View    
+                        <EyeIcon className="w-4 h-4 mr-2" />
+                        Show    
                     </Button>
                 </Link>
             );
