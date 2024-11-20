@@ -6,6 +6,7 @@ import { User } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Link } from "@inertiajs/react";
 import { ArrowLeftIcon } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function UserView({ user }: { user: User }) {
     return (
@@ -26,8 +27,15 @@ export default function UserView({ user }: { user: User }) {
                                 </Link>
                             </Button>
                         </div>
-                    </CardHeader>
+                    </CardHeader>   
                     <CardContent className="space-y-6 pt-6">
+                        <Avatar className="size-32">
+                            {user.avatar ? (
+                                <AvatarImage src={user.avatar} alt={user.name} className="size-32" />
+                            ) : (
+                                <AvatarFallback className="bg-primary-foreground text-primary text-xl">{user.name.charAt(0)}</AvatarFallback>
+                            )}
+                        </Avatar>   
                         <div className="grid grid-cols-[200px_1fr] gap-4 items-center">
                             <Label
                                 htmlFor="name"
