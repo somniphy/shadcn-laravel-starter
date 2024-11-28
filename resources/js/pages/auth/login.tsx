@@ -39,8 +39,6 @@ export default function Login({
 
     return (
         <GuestLayout header={{ title: "Log in" }} auth={auth}>
-            <Head title="Log in" />
-
             {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
                     {status}

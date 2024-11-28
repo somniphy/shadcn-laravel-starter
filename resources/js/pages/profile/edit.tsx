@@ -13,14 +13,11 @@ export default function Edit({
     mustVerifyEmail,
     status,
     auth,
-    message,
 }: PageProps<{ mustVerifyEmail: boolean; status?: string; message?: string }>) {
     return (
         <AuthenticatedLayout header={{ title: "Profile" }}>
-            <Head title="Profile" />
             <div className="py-6">
                 <div className="max-w-7xl space-y-6 sm:px-6">
-                
                     <UpdateAvatar auth={auth} />
                     <UpdateProfileInformationForm
                         mustVerifyEmail={mustVerifyEmail}

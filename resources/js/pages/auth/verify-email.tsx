@@ -1,22 +1,23 @@
+import GuestLayout from "@/layouts/guest-layout";
+import { Head, Link, useForm } from "@inertiajs/react";
+import { FormEventHandler } from "react";
+import { PageProps } from "@/types";
+import { Button } from "@/components/ui/button";
 
-import GuestLayout from '@/layouts/guest-layout';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
-import { PageProps } from '@/types';
-import { Button } from '@/components/ui/button';
-
-export default function VerifyEmail({ status, auth }: PageProps & { status?: string }) {
+export default function VerifyEmail({
+    status,
+    auth,
+}: PageProps & { status?: string }) {
     const { post, processing } = useForm({});
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('verification.send'));
+        post(route("verification.send"));
     };
 
     return (
-        <GuestLayout header={{ title: 'Email Verification' }} auth={auth}>
-
+        <GuestLayout header={{ title: "Email Verification" }} auth={auth}>
             <div className="mb-4 text-sm text-gray-600">
                 Thanks for signing up! Before getting started, could you verify
                 your email address by clicking on the link we just emailed to
@@ -24,7 +25,7 @@ export default function VerifyEmail({ status, auth }: PageProps & { status?: str
                 another.
             </div>
 
-            {status === 'verification-link-sent' && (
+            {status === "verification-link-sent" && (
                 <div className="mb-4 text-sm font-medium text-green-600">
                     A new verification link has been sent to the email address
                     you provided during registration.
@@ -38,7 +39,7 @@ export default function VerifyEmail({ status, auth }: PageProps & { status?: str
                     </Button>
 
                     <Link
-                        href={route('logout')}
+                        href={route("logout")}
                         method="post"
                         as="button"
                         className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
